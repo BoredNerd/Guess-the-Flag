@@ -115,6 +115,7 @@ class Ui_MainWindow(object):
         self.retranslateUi()
 
     def retranslateUi(self):
+        _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         list_flag = self.generateotherflag()  # generate other country name and return a list containg 3 different index
 
