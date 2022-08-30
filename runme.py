@@ -9,18 +9,41 @@
 
 
 from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtGui import QCursor, QPixmap
+from PyQt5.QtCore import Qt, QPoint
 import os
 import random
 import sys
 from playsound import playsound
 
 class Ui_MainWindow(object):
+    def mousePress(self, event):
+        MainWindow.dragPos = MainWindow.pos()
+        self.mouse_original_pos = MainWindow.mapToGlobal(event.pos())
+
+    def moveWindow(self, event):
+        if event.buttons() == Qt.LeftButton:
+            MainWindow_last_pos = MainWindow.dragPos + MainWindow.mapToGlobal(event.pos()) - self.mouse_original_pos
+            MainWindow.move(MainWindow_last_pos)
+            event.accept()
+
     def setupUi(self, MainWindow):
+
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(889, 680)
         MainWindow.setStyleSheet("background-color : #161219;")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+
+        self.header = QtWidgets.QFrame(self.centralwidget)
+        self.header.setGeometry(QtCore.QRect(0, 0, 889, 31))
+        self.header.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.header.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.header.setObjectName("header")
+        self.header.mouseMoveEvent = self.moveWindow
+        self.header.mousePressEvent = self.mousePress
+        self.header.setCursor(QCursor(QtCore.Qt.SizeAllCursor))
+
         self.gridLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
         self.gridLayoutWidget_2.setGeometry(QtCore.QRect(40, 360, 801, 311))
         self.gridLayoutWidget_2.setObjectName("gridLayoutWidget_2")
@@ -32,6 +55,7 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.pushButton_1 = QtWidgets.QPushButton(self.gridLayoutWidget_2)
         self.pushButton_1.setEnabled(True)
+        self.pushButton_1.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_1.setMinimumSize(QtCore.QSize(355, 111))
         self.pushButton_1.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.pushButton_1.setStyleSheet("QPushButton{\n"
@@ -49,6 +73,7 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.pushButton_1, 0, 0, 1, 1)
         self.pushButton_2 = QtWidgets.QPushButton(self.gridLayoutWidget_2)
         self.pushButton_2.setEnabled(True)
+        self.pushButton_2.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_2.setMinimumSize(QtCore.QSize(355, 111))
         self.pushButton_2.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.pushButton_2.setStyleSheet("QPushButton{\n"
@@ -66,6 +91,7 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.pushButton_2, 0, 1, 1, 1)
         self.pushButton_3 = QtWidgets.QPushButton(self.gridLayoutWidget_2)
         self.pushButton_3.setEnabled(True)
+        self.pushButton_3.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_3.setMinimumSize(QtCore.QSize(355, 111))
         self.pushButton_3.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.pushButton_3.setStyleSheet("QPushButton{\n"
@@ -83,6 +109,7 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.pushButton_3, 1, 0, 1, 1)
         self.pushButton_4 = QtWidgets.QPushButton(self.gridLayoutWidget_2)
         self.pushButton_4.setEnabled(True)
+        self.pushButton_4.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_4.setMinimumSize(QtCore.QSize(355, 111))
         self.pushButton_4.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.pushButton_4.setStyleSheet("QPushButton{\n"
@@ -100,12 +127,25 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.pushButton_4, 1, 1, 1, 1)
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(180, 40, 541, 311))
-        self.label.setText("")
         self.label.setObjectName("label")
+        self.exit = QtWidgets.QLabel(self.centralwidget)
+        self.exit.setGeometry(QtCore.QRect(580, -120, 200, 200))
+        exit_nothover = QPixmap("./image/exit.png")
+        exit_hover = QPixmap("./image/exit_hover.png")
+        self.exit.setPixmap(exit_nothover)
+        self.exit.setAlignment(QtCore.Qt.AlignCenter)
+        self.exit.setGeometry(850,20,15,34 )
+        self.exit.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
+
+        self.exit.leaveEvent = lambda e: self.exit.setPixmap(exit_nothover)
+        self.exit.enterEvent = lambda e: self.exit.setPixmap(exit_hover)
+        self.exit.mousePressEvent = self.prova
+        MainWindow.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         MainWindow.setCentralWidget(self.centralwidget)
         self.randomflag()
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
+    def prova(self, *arg, **kwargs):
+        sys.exit()
     def randomflag(self):  # set the flag on the label
         self.flagfile = random.choice(range(len(os.listdir("./flagcode/"))))   # choose a flag from the  folder flagcode
         print("name flag :" + os.listdir('./flagcode/')[self.flagfile].replace(".svg", ""))
@@ -217,4 +257,5 @@ if __name__ == "__main__":
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
-    sys.exit(app.exec_())
+    app.exec_()
+
