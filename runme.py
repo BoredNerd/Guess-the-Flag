@@ -147,71 +147,64 @@ class Ui_MainWindow(object):
     def prova(self, *arg, **kwargs):
         sys.exit()
     def randomflag(self):  # set the flag on the label
-        self.flagfile = random.choice(range(len(os.listdir("./flagcode/"))))   # choose a flag from the  folder flagcode
-        print("name flag :" + os.listdir('./flagcode/')[self.flagfile].replace(".svg", ""))
-        print("index flag in dir  " + str(self.flagfile))
-        self.label.setStyleSheet( f"image : url(flagcode/{os.listdir('./flagcode/')[self.flagfile]})")  # set the chosen flag on the label
+        self.flagfile = random.choice(range(len(os.listdir("./image/flags/"))))   # choose a flag from the  folder flagcode
+        self.label.setStyleSheet( f"image : url(image/flags/{os.listdir('./image/flags/')[self.flagfile]})")  # set the chosen flag on the label
         self.randomnumber = random.randint(1,4)  # the name of the country of the flag will be stored inside a random button, if randomnumber = 1 then it will be stored in the first button, if 2 in the second button and so on..
         self.retranslateUi()
 
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle("Country Game")
         list_flag = self.generateotherflag()  # generate other country name and return a list containg 3 different index
-        print(f"numero REALE {self.randomnumber}")
         if self.randomnumber == 1:  # set the country name of the flag on the button number 1
-            print("1 number")
-            self.pushButton_1.setText(os.listdir('./flagcode/')[self.flagfile].replace(".svg", ""))  # set name of the right country
+            self.pushButton_1.setText(os.listdir('./image/flags/')[self.flagfile].replace(".svg", ""))  # set name of the right country
             self.pushButton_1.clicked.connect(lambda:self.disconnectbutton("1", False) if (self.randomnumber == 1) else None)  # if button clicked, calls function randomflag - which basically it replaces the flag of the label to another flag and changes button's text
 
-            self.pushButton_2.setText(os.listdir('./flagcode/')[list_flag[0]].replace(".svg", ""))  # set name of the wrong country
+            self.pushButton_2.setText(os.listdir('./image/flags/')[list_flag[0]].replace(".svg", ""))  # set name of the wrong country
             self.pushButton_2.clicked.connect(lambda: self.disconnectbutton("2", True) if (self.randomnumber == 1) else None)
 
-            self.pushButton_3.setText(os.listdir('./flagcode/')[list_flag[1]].replace(".svg", ""))  # set name of the wrong country
+            self.pushButton_3.setText(os.listdir('./image/flags/')[list_flag[1]].replace(".svg", ""))  # set name of the wrong country
             self.pushButton_3.clicked.connect(lambda: self.disconnectbutton("3", True) if (self.randomnumber == 1) else None)
 
-            self.pushButton_4.setText(os.listdir('./flagcode/')[list_flag[2]].replace(".svg", ""))  # set name of the wrong country
+            self.pushButton_4.setText(os.listdir('./image/flags/')[list_flag[2]].replace(".svg", ""))  # set name of the wrong country
             self.pushButton_4.clicked.connect(lambda: self.disconnectbutton("4", True) if (self.randomnumber == 1) else None)
 
         elif self.randomnumber == 2:  # set the country name of the flag on the button number 2
-            print("2 number")
-            self.pushButton_1.setText(os.listdir('./flagcode/')[list_flag[0]].replace(".svg", ""))  # set name of the wrong country
+            self.pushButton_1.setText(os.listdir('./image/flags/')[list_flag[0]].replace(".svg", ""))  # set name of the wrong country
             self.pushButton_1.clicked.connect(lambda: self.disconnectbutton("1", True) if (self.randomnumber == 2) else None )
 
-            self.pushButton_2.setText(os.listdir('./flagcode/')[self.flagfile].replace(".svg", ""))  # set name of the right country
+            self.pushButton_2.setText(os.listdir('./image/flags/')[self.flagfile].replace(".svg", ""))  # set name of the right country
             self.pushButton_2.clicked.connect(lambda:  self.disconnectbutton("2", False) if (self.randomnumber == 2) else None )  # if button clicked, calls function randomflag - which basically it replaces the flag of the label to another flag and changes button's text
 
-            self.pushButton_3.setText(os.listdir('./flagcode/')[list_flag[1]].replace(".svg", ""))  # set name of the wrong country
+            self.pushButton_3.setText(os.listdir('./image/flags/')[list_flag[1]].replace(".svg", ""))  # set name of the wrong country
             self.pushButton_3.clicked.connect(lambda: self.disconnectbutton("3", True) if (self.randomnumber == 2) else None )
 
-            self.pushButton_4.setText(os.listdir('./flagcode/')[list_flag[2]].replace(".svg", ""))  # set name of the wrong country
+            self.pushButton_4.setText(os.listdir('./image/flags/')[list_flag[2]].replace(".svg", ""))  # set name of the wrong country
             self.pushButton_4.clicked.connect(lambda: self.disconnectbutton("4", True) if (self.randomnumber == 2) else None )
         elif self.randomnumber == 3:  # set the country name of the flag on the button number 3
-            print("3 numero")
-            self.pushButton_1.setText(os.listdir('./flagcode/')[list_flag[0]].replace(".svg", ""))  # set name of the wrong country
+            self.pushButton_1.setText(os.listdir('./image/flags/')[list_flag[0]].replace(".svg", ""))  # set name of the wrong country
             self.pushButton_1.clicked.connect(lambda: self.disconnectbutton("1", True) if (self.randomnumber == 3) else None )
 
-            self.pushButton_2.setText(os.listdir('./flagcode/')[list_flag[1]].replace(".svg", ""))  # set name of the wrong country
+            self.pushButton_2.setText(os.listdir('./image/flags/')[list_flag[1]].replace(".svg", ""))  # set name of the wrong country
             self.pushButton_2.clicked.connect(lambda: self.disconnectbutton("2", True) if (self.randomnumber == 3) else None )
 
-            self.pushButton_3.setText(os.listdir('./flagcode/')[self.flagfile].replace(".svg", ""))  # set name of the right country
+            self.pushButton_3.setText(os.listdir('./image/flags/')[self.flagfile].replace(".svg", ""))  # set name of the right country
             self.pushButton_3.clicked.connect(lambda: self.disconnectbutton("3", False) if (self.randomnumber == 3) else None)  # if button clicked, calls function randomflag - which basically it replaces the flag of the label to another flag and changes button's text
 
-            self.pushButton_4.setText(os.listdir('./flagcode/')[list_flag[2]].replace(".svg", ""))  # set name of the wrong country
+            self.pushButton_4.setText(os.listdir('./image/flags/')[list_flag[2]].replace(".svg", ""))  # set name of the wrong country
             self.pushButton_4.clicked.connect(lambda: self.disconnectbutton("4", True) if (self.randomnumber == 3) else None)
 
         else:  # set the country name of the flag on the button number 4
-            print("4 number")
-            self.pushButton_1.setText(os.listdir('./flagcode/')[list_flag[0]].replace(".svg", "") )  # set name of the wrong country
+            self.pushButton_1.setText(os.listdir('./image/flags/')[list_flag[0]].replace(".svg", "") )  # set name of the wrong country
             self.pushButton_1.clicked.connect(lambda: self.disconnectbutton("1", True) if (self.randomnumber == 4) else None)
 
-            self.pushButton_2.setText(os.listdir('./flagcode/')[list_flag[1]].replace(".svg", "") )  # set name of the wrong country
+            self.pushButton_2.setText(os.listdir('./image/flags/')[list_flag[1]].replace(".svg", "") )  # set name of the wrong country
             self.pushButton_2.clicked.connect(lambda: self.disconnectbutton("2", True) if (self.randomnumber == 4) else None)
 
-            self.pushButton_3.setText(os.listdir('./flagcode/')[list_flag[2]].replace(".svg", ""))  # set name of the wrong country
+            self.pushButton_3.setText(os.listdir('./image/flags/')[list_flag[2]].replace(".svg", ""))  # set name of the wrong country
             self.pushButton_3.clicked.connect(lambda: self.disconnectbutton("3", True) if (self.randomnumber == 4) else None)
 
-            self.pushButton_4.setText(os.listdir('./flagcode/')[self.flagfile].replace(".svg", "")) # set name of the right country
+            self.pushButton_4.setText(os.listdir('./image/flags/')[self.flagfile].replace(".svg", "")) # set name of the right country
             self.pushButton_4.clicked.connect(lambda: self.disconnectbutton("4", False) if (self.randomnumber == 4) else None)  # if button clicked, calls function randomflag - which basically it replaces the flag of the label to another flag and changes button's text
 
     def disconnectbutton(self, number, audio):
@@ -225,8 +218,6 @@ class Ui_MainWindow(object):
                 playsound("./Sound/Right_Answer/noice_sound.wav", block=False)
             else:
                 playsound("./Sound/Right_Answer/yeay_sound.wav", block=False)
-        print("audio "+ str(audio))
-        print("---------------------")
         if number == "1":
             self.pushButton_1.disconnect()
         elif number == "2":
@@ -258,4 +249,3 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     app.exec_()
-
