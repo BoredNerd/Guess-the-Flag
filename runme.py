@@ -130,13 +130,12 @@ class Ui_MainWindow(object):
         self.label.setObjectName("label")
         self.exit = QtWidgets.QLabel(self.centralwidget)
         self.exit.setGeometry(QtCore.QRect(580, -120, 200, 200))
-        exit_nothover = QPixmap("./image/exit.png")
-        exit_hover = QPixmap("./image/exit_hover.png")
+        exit_nothover = QPixmap("./image/icon/exit.png")
+        exit_hover = QPixmap("./image/icon/exit_hover.png")
         self.exit.setPixmap(exit_nothover)
         self.exit.setAlignment(QtCore.Qt.AlignCenter)
         self.exit.setGeometry(850,20,15,34 )
         self.exit.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
-
         self.exit.leaveEvent = lambda e: self.exit.setPixmap(exit_nothover)
         self.exit.enterEvent = lambda e: self.exit.setPixmap(exit_hover)
         self.exit.mousePressEvent = self.prova
@@ -249,3 +248,4 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     app.exec_()
+
