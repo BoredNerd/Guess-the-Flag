@@ -1,4 +1,4 @@
-# Guess-the-Flag
+# Guess the Flag
 A simple educational game made in Python (with PyQT5 & Qtdesigner) which the user has to guess the right flag of the country.
 This quiz game will help you improve your knowledge about countries's flag, the mechanics of the game are simple and interesting, ev by adults and children.
 When the user chooses the right answer, the program plays a sound effect and if the answer is wrong, it will play a different sound effect.
