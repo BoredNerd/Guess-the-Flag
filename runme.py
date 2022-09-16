@@ -1,8 +1,8 @@
 import sys
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtCore import Qt
-from countrygameLogic import countrygameGUI
-from playgameLogic import playgameGUI
+from game.playgameLogic import playgameGUI
+from game.countrygameLogic import countrygameGUI
 import ctypes
 
 class Controller:
