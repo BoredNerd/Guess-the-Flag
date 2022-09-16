@@ -3,7 +3,7 @@ from PyQt5.QtGui import QCursor, QPixmap
 import os
 import random
 import sys
-from countrygameGUI import Ui_MainWindow
+from game.countrygameGUI import Ui_MainWindow
 
 class countrygameGUI(QtWidgets.QMainWindow):
     def __init__(self):
