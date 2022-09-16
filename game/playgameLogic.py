@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import QCursor, QPixmap
 import sys
-from playgameGUI import Ui_MainWindow
+from game.playgameGUI import Ui_MainWindow
 
 class playgameGUI(QtWidgets.QMainWindow):
     def __init__(self):
