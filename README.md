@@ -5,8 +5,8 @@ When the user chooses the right answer, the program plays a sound effect and if 
 ![image](https://user-images.githubusercontent.com/85114537/187549278-cbaf39b6-da9f-4e98-9dbd-0b4f13d53451.png)
 
 >NOTE :
- - before running run.py , you have to install PyQt5, the easiest way is :
- '''
- pip install pyqt5
- '''
+> - before running run.py , you have to install PyQt5, the easiest way is :
+>```
+> pip install pyqt5
+> ```
 
